@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -124,41 +124,16 @@
 
 	<script>
 		//var test;
-		var timer1 = null;
-		var cnt = 0;
-		const anamogura = "images/穴.png";
-		const ana = document.querySelectorAll("ana");
-
-		window.onload = function anamogura () {
-			
-			function event() {
-				cnt++;	
-				if (cnt >= 30 && timer1 != null) {
-					// 5回以上表示したら、タイマーを停止する
-					clearInterval(timer1);
-					alert(`ゲーム終了！ 叩いた回数${countUpValue}回`);
-					
-					// ana.src = anamogura;
-        		}
-				// 1000ミリ秒ごとにコンソールに表示
-				console.log('this time number is: ' + cnt);
-			}
-			 // タイマー開始
-			 timer1 = setInterval(event, 1000);}
-		
 		// 全てのもぐらに、クリックイベントを登録する
 		const moguras = document.querySelectorAll(".mogura");
 		const iteiMogura = "images/モグ1.png";
 		const normalMogura = "images/モグ2.png";
-		
 		setInterval(deruMogura, 1500); //課題１：1000から1500へ
 
-
-	
+		
 		for (let index = 0; index < moguras.length; index++) {
-			const element = moguras[index];			
-			element.addEventListener('click',hitMogura);　//叩かれたモグラ
-			element.addEventListener('click',countUp);　　//叩く回数をカウント
+			const element = moguras[index];
+			element.onclick = hitMogura;
 		}
 
 		// もぐらが叩かれる
@@ -169,12 +144,6 @@
 			setTimeout(kakureruMogura, 700, mogura);　//700ミリ秒後に元に戻る
 		}
 
-		var countUpValue = 0;
-
-		function countUp(){
-			countUpValue++;
-			console.log(countUpValue);
-		}
 		// // もぐらが戻る
 		// function modoruMogura(mogura){
 		// 	mogura.src = "images/モグ2.png"; 
@@ -185,44 +154,32 @@
 			mogura.src = "";
 		}
 
-		// var x = 1;
-		
-		//30秒後に表示させない
-		var x = 1;
-		
-		function testReturn(){
-			x = x + 1;
-		}
-		setTimeout(testReturn,30000);
-
-		function endTest(mogura) {
-			// console.log("終わります");
-			
-			var random2 = Math.floor(Math.random() * 9);
-			var mogura = moguras[random2];
-			mogura.src = anamogura;
-			console.log("想定1" + x);
-			// return{x:0};
-		}
-
 		function deruMogura() {
-			setInterval(endTest,30000);
-			console.log("想定2" + x);
-			
-			if (x >= 2)return;
 			var random = Math.floor(Math.random() * 9);
 			var mogura = moguras[random];
 			mogura.src = normalMogura;
-	
 			// しばらくしたら隠れる
 			setTimeout((mogura) => {
 				if (mogura.src.indexOf(normalMogura)) {
 					kakureruMogura(mogura);
 				}
-			}, 1500, mogura); 
-			//課題１：隠れるまでの時間を600から1500ミリ秒
+			}, 1500, mogura); //課題１：隠れるまでの時間を600から1500ミリ秒
 		}
 
+		
+
+		function allstop(mogura){
+			
+			// mogura.src = normalMogura;
+			alert("終了！");
+
+		};
+
+		setTimeout(allstop,5000);
+		
+		// setTimeout (() => {
+		// 	alert("終了！")
+		// },5000);
 
 
 	</script>
